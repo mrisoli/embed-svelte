@@ -1,16 +1,16 @@
 <script context="module" lang="ts">
 	export const prerender = true;
-
 </script>
 
 <script lang="ts">
 	import Counter from '$lib/Counter.svelte';
 	import { onMount } from "svelte";
-	import { createWidget } from "@typeform/embed";
+	import { createPopup } from "@typeform/embed";
 	let wrapper
-	onMount(() => {
-		createWidget('HgABWQxi', { container: wrapper })
-	})
+	const { toggle } = createPopup('HgABWQxi')
+	function handleClick() {
+		toggle()
+	}
 </script>
 
 <svelte:head>
@@ -34,6 +34,9 @@
 	</h2>
 
 	<div bind:this="{wrapper}" />
+	<button on:click={handleClick}>
+		Click
+	</button>
 
 	<Counter />
 </section>
